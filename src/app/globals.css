@@ -1,0 +1,316 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 215 28% 17%; /* Dark Slate Blue/Gray */
+    --foreground: 210 40% 98%; /* Almost White */
+
+    --card: 215 28% 17%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 215 28% 17%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 175 70% 30%; /* Darker Teal */
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217 33% 25%; /* Slightly Lighter Slate */
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 25%;
+    --muted-foreground: 215 20% 65%; /* Lighter Gray */
+
+    --accent: 175 60% 50%; /* Lighter Teal for links and key highlights */
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 25%;
+    --input: 217 28% 22%;
+    --ring: 175 70% 40%;
+    
+    --radius: 0.5rem;
+
+    --chart-1: 175 70% 30%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 190 65% 55%;
+    --chart-4: 210 70% 60%;
+    --chart-5: 280 65% 60%;
+  }
+
+  .dark {
+    /* Keeping dark theme same as light for this specific design */
+    --background: 215 28% 17%;
+    --foreground: 210 40% 98%;
+
+    --card: 215 28% 17%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 215 28% 17%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 175 70% 30%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217 33% 25%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 25%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 175 60% 50%; /* Lighter Teal for links and key highlights */
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 25%;
+    --input: 217 28% 22%;
+    --ring: 175 70% 40%;
+
+    --chart-1: 175 70% 30%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 190 65% 55%;
+    --chart-4: 210 70% 60%;
+    --chart-5: 280 65% 60%;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body), Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: -1;
+    background-image: var(--bg-image);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    filter: brightness(80%);
+  }
+}
+
+@layer components {
+  .btn-glow {
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .btn-glow::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: inherit; /* Inherit the radius from the button for a perfect match */
+    background: conic-gradient(
+      from 180deg at 50% 50%,
+      hsl(var(--chart-2)),
+      hsl(var(--chart-3)),
+      hsl(var(--chart-4)),
+      hsl(var(--chart-5)),
+      hsl(var(--chart-2))
+    );
+    filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    animation: rotate-glow 4s linear infinite;
+    animation-play-state: paused;
+  }
+
+  .btn-glow:hover::before {
+    opacity: 0.75;
+    animation-play-state: running;
+  }
+
+  .tabs-trigger {
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .btn-glow-destructive {
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .btn-glow-destructive::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: inherit;
+    background: conic-gradient(
+      from 180deg at 50% 50%,
+      hsl(var(--destructive)),
+      #ff6b6b,
+      #ff8e53,
+      #ff6b6b,
+      hsl(var(--destructive))
+    );
+    filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    animation: rotate-glow 4s linear infinite;
+    animation-play-state: paused;
+  }
+
+  .btn-glow-destructive:hover::before {
+    opacity: 0.85;
+    animation-play-state: running;
+  }
+  
+  .btn-glow-support {
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .btn-glow-support::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: inherit;
+    background: conic-gradient(
+      from 180deg at 50% 50%,
+      #ffdd00, /* Yellow */
+      #ff8c00, /* Dark Orange */
+      #ff4500, /* Orange Red */
+      #ff8c00, /* Dark Orange */
+      #ffdd00  /* Yellow */
+    );
+    filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    animation: rotate-glow 4s linear infinite;
+    animation-play-state: paused;
+  }
+
+  .btn-glow-support:hover::before {
+    opacity: 0.85;
+    animation-play-state: running;
+  }
+
+  .title-glare {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+  }
+
+  .btn-glow::after,
+  .btn-glow-destructive::after,
+  .tabs-trigger::after,
+  .title-glare::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: skewX(-30deg);
+    transition: left 0.75s ease-in-out;
+    pointer-events: none;
+  }
+
+  .btn-glow:hover::after,
+  .btn-glow-destructive:hover::after,
+  .tabs-trigger:hover::after,
+  .title-glare:hover::after {
+    left: 150%;
+  }
+
+  /* Custom Scrollbar Styles */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--primary) / 0.4);
+    border-radius: 10px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(var(--accent) / 0.6);
+  }
+  /* For Firefox */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--primary) / 0.4) transparent;
+  }
+}
+
+@keyframes input-glow-animation {
+  0% {
+    box-shadow: 0 0 5px hsl(var(--primary) / 0.8);
+  }
+  50% {
+    box-shadow: 0 0 10px hsl(var(--accent) / 1);
+  }
+  100% {
+    box-shadow: 0 0 5px hsl(var(--primary) / 0.8);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .input-focus-glow:focus-visible {
+    outline: none;
+    border-color: hsl(var(--ring));
+    box-shadow: 0 0 5px hsl(var(--ring));
+    animation: input-glow-animation 2s ease-in-out infinite alternate;
+  }
+  
+  .unread-glow {
+    @apply animate-unread-message-glow;
+    border-color: hsl(0 100% 70% / 0.8) !important;
+  }
+
+  .layout-wrapper {
+    isolation: isolate;
+  }
+
+  #weather-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "main": "bhasha-guard",
+    "default": "bhasha-guard"
+  },
+  "targets": {},
+  "etags": {}
+}
