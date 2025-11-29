@@ -12,6 +12,11 @@ env:
     availability:
       - BUILD
       - RUNTIME
+  - variable: SERPAPI_API_KEY
+    value: "75137be9e6ecafe3f29df0868c1cf22218ec36ea78dadac1158833db93437d66"
+    availability:
+      - BUILD
+      - RUNTIME
   - variable: NEXT_PUBLIC_FIREBASE_API_KEY
     value: "AIzaSyDkgFz0aAaIdQNqkz3lJeFio0yo0Fgg0VU"
     availability:
